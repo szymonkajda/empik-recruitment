@@ -1,0 +1,15 @@
+ComplaintRequest:
+  summary: Complaint Request definition
+  type: object
+  properties:
+    productId:
+      type: integer
+    content:
+      type: string
+    creationDate:
+      type: string
+      format: datetime
+    creationUser:
+      type: string
+    country:
+      type: string

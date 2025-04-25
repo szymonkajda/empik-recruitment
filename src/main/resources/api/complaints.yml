@@ -1,0 +1,22 @@
+openapi: 3.0.4
+info:
+  title: Complaints API
+  description: API contract containing requests for Complaints domain.
+  version: 0.0.1
+
+paths:
+  /complaints:
+    put:
+      summary: Creates new Complaint.
+      operationId: createComplaint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./definitions/complaint-request.yml#/ComplaintRequest"
+      responses:
+        '200':
+          description: Complaint created successfully.
+
+
