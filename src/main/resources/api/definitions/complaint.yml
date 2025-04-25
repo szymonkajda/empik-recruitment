@@ -1,7 +1,9 @@
-ComplaintRequest:
-  summary: Complaint Request definition
+Complaint:
+  summary: Complaint object
   type: object
   properties:
+    id:
+      type: integer
     productId:
       type: integer
     content:
@@ -14,6 +16,7 @@ ComplaintRequest:
       minLength: 1
 #   TODO: Define country type and restrictions correctly.
   required:
+    - id
     - productId
     - content
     - creationDate

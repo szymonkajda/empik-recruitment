@@ -16,7 +16,42 @@ paths:
             schema:
               $ref: "./definitions/complaint-request.yml#/ComplaintRequest"
       responses:
-        '200':
+        '201':
           description: Complaint created successfully.
+        '400':
+          description: Bad request.
+    get:
+      summary: Gets all Complaints.
+      operationId: getAllComplaints
+      responses:
+        '200':
+          description: Response containing all Complaints.
+          content:
+            application/json:
+              schema:
+                $ref: "./definitions/complaints-collection.yml#/ComplaintsCollection"
+  /complaints/{id}/updateContent:
+    post:
+      summary: Updates content of existing Complaint.
+      operationId: updateComplaintContent
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./definitions/complaint-content.yml#/ComplaintContent"
+      responses:
+        '200':
+          description: Complaint content updated successfully.
+        '400':
+          description: Bad request.
+        '404':
+          description: Complaint not found.
 
 

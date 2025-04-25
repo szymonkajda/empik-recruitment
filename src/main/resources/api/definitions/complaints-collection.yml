@@ -1,0 +1,11 @@
+ComplaintsCollection:
+  summary: Object containing collection of Complaints
+  type: object
+  properties:
+    complaints:
+      type: array
+      items:
+        $ref: "complaint.yml#/Complaint"
+      minItems: 0
+  required:
+    - complaints
