@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="Create Complaint table" author="szymon.kajda">
+        <createSequence sequenceName="complaint_id_seq"/>
+
+        <createTable tableName="complaint">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_user" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint constraintName="unique_product_id_creation_user" tableName="complaint" columnNames="product_id, creation_user"/>
+    </changeSet>
+<!--    TODO: add column for country, counter -->
+
+</databaseChangeLog>
