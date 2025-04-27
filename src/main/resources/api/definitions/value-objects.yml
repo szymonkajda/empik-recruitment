@@ -1,0 +1,21 @@
+Id:
+  type: integer
+  format: int64
+
+ComplaintContent:
+  type: string
+  minLength: 1
+  maxLength: 500
+
+OffsetDateTimeModel:
+  type: string
+  format: date-time
+
+User:
+  type: string
+  minLength: 1
+  maxLength: 50
+
+Counter:
+  type: integer
+  format: int64

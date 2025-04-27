@@ -4,17 +4,18 @@ Complaint:
   properties:
 #    TODO: Define properties length constraints
     id:
-      type: integer
+      $ref: "value-objects.yml#/Id"
     productId:
-      type: integer
+      $ref: "value-objects.yml#/Id"
     content:
-      $ref: "complaint-content.yml#/ComplaintContent"
+      $ref: "value-objects.yml#/ComplaintContent"
     creationDate:
-      type: string
-      format: date-time
+      $ref: "value-objects.yml#/OffsetDateTimeModel"
     creationUser:
-      type: string
-      minLength: 1
+      $ref: "value-objects.yml#/User"
+    counter:
+      $ref: "value-objects.yml#/Counter"
+
 #   TODO: Define country, counter types and restrictions correctly.
   required:
     - id

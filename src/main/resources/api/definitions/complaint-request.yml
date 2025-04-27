@@ -3,15 +3,13 @@ ComplaintRequest:
   type: object
   properties:
     productId:
-      type: integer
+      $ref: "value-objects.yml#/Id"
     content:
-      $ref: "complaint-content.yml#/ComplaintContent"
+      $ref: "value-objects.yml#/ComplaintContent"
     creationDate:
-      type: string
-      format: date-time
+      $ref: "value-objects.yml#/OffsetDateTimeModel"
     creationUser:
-      type: string
-      minLength: 1
+      $ref: "value-objects.yml#/User"
 #   TODO: Define country type and restrictions correctly.
   required:
     - productId

@@ -39,13 +39,14 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            $ref: "./definitions/value-objects.yml#/Id"
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "./definitions/complaint-content.yml#/ComplaintContent"
+              $ref: "./definitions/value-objects.yml#/ComplaintContent"
+              title: ComplaintContent
       responses:
         '200':
           description: Complaint content updated successfully.

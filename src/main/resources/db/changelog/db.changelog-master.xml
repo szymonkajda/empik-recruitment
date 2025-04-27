@@ -5,16 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="Create Complaint table" author="szymon.kajda">
-        <createSequence sequenceName="complaint_id_seq"/>
+        <createSequence sequenceName="complaint_id_seq" incrementBy="50" startValue="1"/>
 
         <createTable tableName="complaint">
-            <column name="id" type="int">
-                <constraints primaryKey="true"/>
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="version" type="int">
+            <column name="version" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="product_id" type="int">
+            <column name="product_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="content" type="varchar(500)">
@@ -26,10 +26,13 @@
             <column name="creation_user" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
+            <column name="counter" type="bigint">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
 
         <addUniqueConstraint constraintName="unique_product_id_creation_user" tableName="complaint" columnNames="product_id, creation_user"/>
     </changeSet>
-<!--    TODO: add column for country, counter -->
+<!--    TODO: add column for country -->
 
 </databaseChangeLog>
