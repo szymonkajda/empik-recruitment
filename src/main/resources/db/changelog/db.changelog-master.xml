@@ -29,10 +29,12 @@
             <column name="counter" type="bigint">
                 <constraints nullable="false"/>
             </column>
+            <column name="country_name" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
         </createTable>
 
         <addUniqueConstraint constraintName="unique_product_id_creation_user" tableName="complaint" columnNames="product_id, creation_user"/>
     </changeSet>
-<!--    TODO: add column for country -->
 
 </databaseChangeLog>

@@ -10,10 +10,8 @@ ComplaintRequest:
       $ref: "value-objects.yml#/OffsetDateTimeModel"
     creationUser:
       $ref: "value-objects.yml#/User"
-#   TODO: Define country type and restrictions correctly.
   required:
     - productId
     - content
     - creationDate
     - creationUser
-#    - country

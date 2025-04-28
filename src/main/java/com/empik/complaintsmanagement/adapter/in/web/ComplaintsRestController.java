@@ -1,15 +1,18 @@
 package com.empik.complaintsmanagement.adapter.in.web;
 
+import static com.empik.complaintsmanagement.adapter.in.web.IpResolver.resolveIp;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.empik.complaintsmanagement.api.ComplaintsApi;
+import com.empik.complaintsmanagement.application.datatype.IpAddress;
 import com.empik.complaintsmanagement.application.port.in.CreateComplaintUseCase;
 import com.empik.complaintsmanagement.application.port.in.GetAllComplaintsQuery;
 import com.empik.complaintsmanagement.application.port.in.UpdateComplaintContentUseCase;
 import com.empik.complaintsmanagement.openapi.model.Complaint;
 import com.empik.complaintsmanagement.openapi.model.ComplaintRequest;
 import com.empik.complaintsmanagement.openapi.model.ComplaintsCollection;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping(path = "api/v1")
 class ComplaintsRestController implements ComplaintsApi {
+
   // TODO: Integration test
+  private final HttpServletRequest httpServletRequest;
   private final CreateComplaintUseCase createComplaintUseCase;
   private final UpdateComplaintContentUseCase updateComplaintContentUseCase;
   private final GetAllComplaintsQuery getAllComplaintsQuery;
@@ -29,7 +34,9 @@ class ComplaintsRestController implements ComplaintsApi {
 
   @Override
   public ResponseEntity<Void> createComplaint(ComplaintRequest complaintRequest) {
-    createComplaintUseCase.create(createComplaintCommandMapper.toCommand(complaintRequest));
+    IpAddress clientIp = resolveIp(httpServletRequest);
+    createComplaintUseCase.create(
+        createComplaintCommandMapper.toCommand(complaintRequest, clientIp));
     return ResponseEntity.status(CREATED).build();
   }
 

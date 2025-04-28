@@ -10,10 +10,15 @@ public record ComplaintDto(
     String content,
     OffsetDateTime creationDate,
     String creationUser,
-    Integer counter) {
+    Integer counter,
+    @Nullable String countryName) {
 
   public ComplaintDto(
-      Long productId, String content, OffsetDateTime creationDate, String creationUser) {
-    this(null, null, productId, content, creationDate, creationUser, 1);
+      Long productId,
+      String content,
+      OffsetDateTime creationDate,
+      String creationUser,
+      @Nullable String countryName) {
+    this(null, null, productId, content, creationDate, creationUser, 1, countryName);
   }
 }

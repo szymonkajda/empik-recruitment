@@ -4,6 +4,7 @@ import com.empik.complaintsmanagement.application.datatype.ComplaintDto;
 import com.empik.complaintsmanagement.application.port.in.CreateComplaintUseCase;
 import com.empik.complaintsmanagement.application.port.out.FindComplaintPort;
 import com.empik.complaintsmanagement.application.port.out.PersistComplaintPort;
+import com.empik.complaintsmanagement.application.port.out.ResolveCountryPort;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 class CreateComplaintService implements CreateComplaintUseCase {
 
   private final FindComplaintPort findComplaintPort;
+  private final ResolveCountryPort resolveCountryPort;
   private final PersistComplaintPort persistComplaintPort;
 
   @Override
@@ -27,12 +29,14 @@ class CreateComplaintService implements CreateComplaintUseCase {
       complaint.incrementCounter();
       persistComplaintPort.persist(complaint.toDto());
     } else {
+      String countryName = resolveCountryPort.resolveBy(command.clientIp()).orElse(null);
       ComplaintDto newComplaint =
           new ComplaintDto(
               command.productId(),
               command.content(),
               command.creationDate(),
-              command.creationUser());
+              command.creationUser(),
+              countryName);
       persistComplaintPort.persist(newComplaint);
     }
   }

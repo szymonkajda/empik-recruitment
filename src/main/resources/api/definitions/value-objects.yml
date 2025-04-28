@@ -19,3 +19,7 @@ User:
 Counter:
   type: integer
   format: int64
+
+CountryName:
+  type: string
+  maxLength: 100

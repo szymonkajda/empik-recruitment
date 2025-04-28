@@ -7,6 +7,7 @@ import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = "complaint")
@@ -25,4 +26,5 @@ public class ComplaintEntity {
   private OffsetDateTime creationDate;
   private String creationUser;
   private Integer counter;
+  @Nullable private String countryName;
 }

@@ -16,6 +16,7 @@ class Complaint {
   private OffsetDateTime creationDate;
   private String creationUser;
   private Integer counter;
+  @Nullable private String countryName;
 
   public static Complaint from(ComplaintDto complaint) {
     return new Complaint(
@@ -25,7 +26,8 @@ class Complaint {
         complaint.content(),
         complaint.creationDate(),
         complaint.creationUser(),
-        complaint.counter());
+        complaint.counter(),
+        complaint.countryName());
   }
 
   public void incrementCounter() {
@@ -33,6 +35,7 @@ class Complaint {
   }
 
   public ComplaintDto toDto() {
-    return new ComplaintDto(id, version, productId, content, creationDate, creationUser, counter);
+    return new ComplaintDto(
+        id, version, productId, content, creationDate, creationUser, counter, countryName);
   }
 }

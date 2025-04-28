@@ -11,6 +11,7 @@ public final class ComplaintTestDataFactory {
   public static final OffsetDateTime CREATION_DATE = OffsetDateTime.now();
   public static final String CREATION_USER = "user.one";
   public static final Integer COUNTER = 15;
+  public static final String COUNTRY_GERMANY = "Germany";
 
   private ComplaintTestDataFactory() {}
 
@@ -22,6 +23,7 @@ public final class ComplaintTestDataFactory {
         CONTENT,
         CREATION_DATE,
         CREATION_USER,
-        COUNTER);
+        COUNTER,
+            COUNTRY_GERMANY);
   }
 }

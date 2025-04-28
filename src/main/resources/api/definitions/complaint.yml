@@ -14,12 +14,12 @@ Complaint:
       $ref: "value-objects.yml#/User"
     counter:
       $ref: "value-objects.yml#/Counter"
+    countryName:
+      $ref: "value-objects.yml#/CountryName"
 
-#   TODO: Define country, counter types and restrictions correctly.
   required:
     - id
     - productId
     - content
     - creationDate
     - creationUser
-#    - country
