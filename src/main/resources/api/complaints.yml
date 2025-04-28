@@ -20,6 +20,10 @@ paths:
           description: Complaint created successfully.
         '400':
           description: Bad request.
+          content:
+              application/json:
+                schema:
+                  $ref: "./definitions/error-response.yml#/ErrorResponse"
     get:
       summary: Gets all Complaints.
       operationId: getAllComplaints
@@ -52,7 +56,15 @@ paths:
           description: Complaint content updated successfully.
         '400':
           description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: "./definitions/error-response.yml#/ErrorResponse"
         '404':
           description: Complaint not found.
+          content:
+            application/json:
+              schema:
+                $ref: "./definitions/error-response.yml#/ErrorResponse"
 
 

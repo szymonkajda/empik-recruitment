@@ -6,4 +6,6 @@ import java.util.Optional;
 public interface FindComplaintPort {
 
   Optional<ComplaintDto> findBy(Long productId, String creationUser);
+
+  Optional<ComplaintDto> findBy(Long complaintId);
 }

@@ -2,7 +2,6 @@ Complaint:
   summary: Complaint object
   type: object
   properties:
-#    TODO: Define properties length constraints
     id:
       $ref: "value-objects.yml#/Id"
     productId:

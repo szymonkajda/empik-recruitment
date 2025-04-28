@@ -1,0 +1,6 @@
+ErrorResponse:
+  summary: Object containing details about error.
+  type: object
+  properties:
+    message:
+      type: string

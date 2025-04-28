@@ -10,7 +10,6 @@ import com.empik.complaintsmanagement.application.port.in.CreateComplaintUseCase
 import com.empik.complaintsmanagement.application.port.out.FindComplaintPort;
 import com.empik.complaintsmanagement.application.port.out.PersistComplaintPort;
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -27,9 +26,6 @@ class CreateComplaintServiceTest {
   @InjectMocks private CreateComplaintService createComplaintService;
   @Captor private ArgumentCaptor<ComplaintDto> complaintCaptor;
 
-  @BeforeEach
-  void setUp() {}
-
   @Test
   void shouldAddNewComplaint() {
     // given
@@ -45,12 +41,12 @@ class CreateComplaintServiceTest {
     verify(persistComplaintPort).persist(complaintCaptor.capture());
     ComplaintDto complaint = complaintCaptor.getValue();
 
+    assertThat(complaint)
+        .usingRecursiveComparison()
+        .ignoringFields("id", "version", "counter")
+        .isEqualTo(createExistingComplaint());
     assertThat(complaint.id()).isNull();
     assertThat(complaint.version()).isNull();
-    assertThat(complaint.productId()).isEqualTo(PRODUCT_ID);
-    assertThat(complaint.content()).isEqualTo(CONTENT);
-    assertThat(complaint.creationDate()).isEqualTo(CREATION_DATE);
-    assertThat(complaint.creationUser()).isEqualTo(CREATION_USER);
     assertThat(complaint.counter()).isEqualTo(1);
   }
 
@@ -70,12 +66,10 @@ class CreateComplaintServiceTest {
     verify(persistComplaintPort).persist(complaintCaptor.capture());
     ComplaintDto complaint = complaintCaptor.getValue();
 
-    assertThat(complaint.id()).isEqualTo(COMPLAINT_ID);
-    assertThat(complaint.version()).isEqualTo(COMPLAINT_VERSION);
-    assertThat(complaint.productId()).isEqualTo(PRODUCT_ID);
-    assertThat(complaint.content()).isEqualTo(CONTENT);
-    assertThat(complaint.creationDate()).isEqualTo(CREATION_DATE);
-    assertThat(complaint.creationUser()).isEqualTo(CREATION_USER);
+    assertThat(complaint)
+        .usingRecursiveComparison()
+        .ignoringFields("counter")
+        .isEqualTo(createExistingComplaint());
     assertThat(complaint.counter()).isEqualTo(COUNTER + 1);
   }
 }
