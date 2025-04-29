@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 class ComplaintJpaAdapter implements FindComplaintPort, PersistComplaintPort {
-  // TODO: Integration test
+
   private final ComplaintRepository complaintRepository;
   private final ComplaintEntityMapper complaintEntityMapper;
 

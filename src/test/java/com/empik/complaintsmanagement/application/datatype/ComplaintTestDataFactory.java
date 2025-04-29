@@ -15,6 +15,11 @@ public final class ComplaintTestDataFactory {
 
   private ComplaintTestDataFactory() {}
 
+  public static ComplaintDto createNewComplaint() {
+    return new ComplaintDto(
+        null, null, PRODUCT_ID, CONTENT, CREATION_DATE, CREATION_USER, COUNTER, COUNTRY_GERMANY);
+  }
+
   public static ComplaintDto createExistingComplaint() {
     return new ComplaintDto(
         COMPLAINT_ID,

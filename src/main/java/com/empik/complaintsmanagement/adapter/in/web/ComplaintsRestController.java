@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "api/v1")
 class ComplaintsRestController implements ComplaintsApi {
 
-  // TODO: Integration test
   private final HttpServletRequest httpServletRequest;
   private final CreateComplaintUseCase createComplaintUseCase;
   private final UpdateComplaintContentUseCase updateComplaintContentUseCase;

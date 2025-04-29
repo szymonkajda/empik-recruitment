@@ -8,17 +8,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
-@RequiredArgsConstructor
 class ResolveCountryNameWebAdapter implements ResolveCountryPort {
 
-  // TODO: Integration test
   private static final String REQUEST_API_URL = "https://ipapi.co/{ip}/json/";
 
   private final RestTemplate restTemplate = new RestTemplate();

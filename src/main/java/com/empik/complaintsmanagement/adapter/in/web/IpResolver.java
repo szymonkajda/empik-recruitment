@@ -5,9 +5,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 final class IpResolver {
 
-  // TODO: test
   private static final String X_FORWARDED_FOR_HEADER = "X-Forwarded-For";
-  private static final String PROXY_CLIENT_IP = "WL-Proxy-Client-IP";
+  private static final String PROXY_CLIENT_IP_HEADER = "WL-Proxy-Client-IP";
 
   private IpResolver() {}
 
@@ -17,7 +16,7 @@ final class IpResolver {
       return forwardedForIp;
     }
 
-    IpAddress proxyClientIp = new IpAddress(request.getHeader(PROXY_CLIENT_IP));
+    IpAddress proxyClientIp = new IpAddress(request.getHeader(PROXY_CLIENT_IP_HEADER));
     if (proxyClientIp.isValid()) {
       return proxyClientIp;
     }
