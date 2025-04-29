@@ -24,6 +24,6 @@ public final class ComplaintTestDataFactory {
         CREATION_DATE,
         CREATION_USER,
         COUNTER,
-            COUNTRY_GERMANY);
+        COUNTRY_GERMANY);
   }
 }

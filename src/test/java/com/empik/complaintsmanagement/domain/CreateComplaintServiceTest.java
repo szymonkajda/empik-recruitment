@@ -1,11 +1,18 @@
 package com.empik.complaintsmanagement.domain;
 
+import static com.empik.complaintsmanagement.application.datatype.ComplaintTestDataFactory.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+
 import com.empik.complaintsmanagement.application.datatype.ComplaintDto;
 import com.empik.complaintsmanagement.application.datatype.IpAddress;
 import com.empik.complaintsmanagement.application.port.in.CreateComplaintUseCase;
 import com.empik.complaintsmanagement.application.port.out.FindComplaintPort;
 import com.empik.complaintsmanagement.application.port.out.PersistComplaintPort;
 import com.empik.complaintsmanagement.application.port.out.ResolveCountryPort;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -13,14 +20,6 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
-
-import static com.empik.complaintsmanagement.application.datatype.ComplaintTestDataFactory.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
 
 @ExtendWith(MockitoExtension.class)
 class CreateComplaintServiceTest {
@@ -40,7 +39,8 @@ class CreateComplaintServiceTest {
     given(resolveCountryPort.resolveBy(IP_ADDRESS)).willReturn(Optional.of(COUNTRY_GERMANY));
 
     CreateComplaintUseCase.Command command =
-        new CreateComplaintUseCase.Command(PRODUCT_ID, CONTENT, CREATION_DATE, CREATION_USER, IP_ADDRESS);
+        new CreateComplaintUseCase.Command(
+            PRODUCT_ID, CONTENT, CREATION_DATE, CREATION_USER, IP_ADDRESS);
 
     // when
     createComplaintService.create(command);
@@ -65,7 +65,8 @@ class CreateComplaintServiceTest {
     given(resolveCountryPort.resolveBy(IP_ADDRESS)).willReturn(Optional.empty());
 
     CreateComplaintUseCase.Command command =
-            new CreateComplaintUseCase.Command(PRODUCT_ID, CONTENT, CREATION_DATE, CREATION_USER, IP_ADDRESS);
+        new CreateComplaintUseCase.Command(
+            PRODUCT_ID, CONTENT, CREATION_DATE, CREATION_USER, IP_ADDRESS);
 
     // when
     createComplaintService.create(command);
@@ -83,7 +84,8 @@ class CreateComplaintServiceTest {
         .willReturn(Optional.of(createExistingComplaint()));
 
     CreateComplaintUseCase.Command command =
-        new CreateComplaintUseCase.Command(PRODUCT_ID, CONTENT, CREATION_DATE, CREATION_USER, IP_ADDRESS);
+        new CreateComplaintUseCase.Command(
+            PRODUCT_ID, CONTENT, CREATION_DATE, CREATION_USER, IP_ADDRESS);
 
     // when
     createComplaintService.create(command);
